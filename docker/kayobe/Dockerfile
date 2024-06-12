@@ -23,7 +23,7 @@ ENV container docker
 # CMD ["/usr/sbin/init"]
 
 RUN dnf update -y && \
-    dnf install -y gcc git vim python3-pyyaml python3-virtualenv libffi-devel sudo which openssh-server \
+    dnf install -y gcc git vim python3-pyyaml libffi-devel sudo which openssh-server \
         diffstat diffutils && \
     dnf clean all
 
