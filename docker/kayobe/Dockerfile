@@ -1,7 +1,11 @@
 # syntax=docker/dockerfile:1.2
 
-FROM quay.io/centos/centos:stream8
-MAINTAINER "Will Szumski" <will@stackhpc.com>
+# NOTE: Currently supported images:
+# quay.io/centos/centos:stream8
+# rockylinux:9
+ARG BASE_IMAGE="quay.io/centos/centos:stream8"
+FROM ${BASE_IMAGE}
+LABEL maintainer="Will Szumski will@stackhpc.com"
 
 ENV container docker
 # NOTE: systemd requires privileged container
