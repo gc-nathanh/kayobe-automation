@@ -9,10 +9,7 @@ source "${PARENT}/../functions"
 
 function main {
     kayobe_init
-    pwd
-    ls 
-    find ./
-    run_kayobe_automation_playbook pulp-repo-sync.yml "${args[@]}"
+    run_kayobe playbook run "${KAYOBE_AUTOMATION_CONTEXT_ENV_PATH}/src/kayobe-config/ansible/pulp-repo-sync.yml" "${@}"
     pull_request "${KAYOBE_AUTOMATION_CONTEXT_ENV_PATH}/src/kayobe-config"
 }
 
