@@ -12,7 +12,7 @@ function main {
     pwd
     ls 
     find ./
-    run_kayobe playbook run ansible/pulp-repo-sync.yml "${@}"
+    run_kayobe_automation_playbook pulp-repo-sync.yml "${args[@]}"
     pull_request "${KAYOBE_AUTOMATION_CONTEXT_ENV_PATH}/src/kayobe-config"
 }
 
