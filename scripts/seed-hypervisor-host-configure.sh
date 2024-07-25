@@ -9,7 +9,6 @@ source "${PARENT}/../functions"
 
 function main {
     kayobe_init
-    find .
     run_kayobe seed hypervisor host configure "${@}"
     pull_request "${KAYOBE_AUTOMATION_CONTEXT_ENV_PATH}/src/kayobe-config"
 }
