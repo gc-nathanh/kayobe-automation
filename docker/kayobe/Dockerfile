@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.2
 
-FROM quay.io/centos/centos:stream8
+FROM quay.io/rockylinux/rockylinux:9.2
 MAINTAINER "Will Szumski" <will@stackhpc.com>
 
 ENV container docker
@@ -18,12 +18,20 @@ ENV container docker
 
 # CMD ["/usr/sbin/init"]
 
-RUN dnf update -y && \
-    dnf install -y gcc git vim python3-pyyaml python3-virtualenv libffi-devel sudo which openssh-server \
-        diffstat diffutils && \
+# RUN sed -i -e 's/^mirrorlist/#mirrorlist/g' \
+#         -e 's/^#baseurl/baseurl/g' \
+#         -e 's/mirror\.centos\.org/vault.centos.org/g' /etc/yum.repos.d/CentOS-Stream-*.repo
+
+RUN sed -i -e 's/$releasever/9.4/g' /etc/yum.repos.d/rocky*.repo && \
+    dnf update -y && \
+    dnf install -y dnf-plugins-core gcc git vim python3-pyyaml libffi-devel sudo which openssh-server diffstat diffutils python3-libselinux && \
     dnf clean all
 
-RUN dnf install -y socat && dnf clean all
+RUN dnf config-manager --set-enabled crb && \
+    dnf install -y epel-release && \
+    dnf clean all
+
+RUN dnf install -y python3-virtualenv socat && dnf clean all
 
 ENV KAYOBE_USER=stack
 ARG KAYOBE_USER_UID=1000
