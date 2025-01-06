@@ -22,7 +22,7 @@ ENV container docker
 #         -e 's/^#baseurl/baseurl/g' \
 #         -e 's/mirror\.centos\.org/vault.centos.org/g' /etc/yum.repos.d/CentOS-Stream-*.repo
 
-RUN sed -i -e 's/$releasever/9.4/g' /etc/yum.repos.d/rocky*.repo && \
+RUN sed -i -e 's/$releasever/9.5/g' /etc/yum.repos.d/rocky*.repo && \
     dnf update -y && \
     dnf install -y dnf-plugins-core gcc git vim python3-pyyaml libffi-devel sudo which openssh-server diffstat diffutils python3-libselinux && \
     dnf clean all
