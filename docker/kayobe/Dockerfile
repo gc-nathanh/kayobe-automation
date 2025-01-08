@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.2
 
-FROM quay.io/rockylinux/rockylinux:9.5
+FROM quay.io/rockylinux/rockylinux:9.2
 MAINTAINER "Will Szumski" <will@stackhpc.com>
 
 ENV container docker
@@ -22,7 +22,7 @@ ENV container docker
 #         -e 's/^#baseurl/baseurl/g' \
 #         -e 's/mirror\.centos\.org/vault.centos.org/g' /etc/yum.repos.d/CentOS-Stream-*.repo
 
-RUN sed -i -e 's/$releasever/9.5/g' /etc/yum.repos.d/rocky*.repo && \
+RUN sed -i -e 's/$releasever/9.4/g' -e 's/$contentdir/vault/g' -e 's/^#baseurl/baseurl/g' -e 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/rocky*.repo && \
     dnf update -y && \
     dnf install -y dnf-plugins-core gcc git vim python3-pyyaml libffi-devel sudo which openssh-server diffstat diffutils python3-libselinux && \
     dnf clean all
@@ -42,7 +42,6 @@ RUN groupadd -g $KAYOBE_USER_GID -o stack &&  \
     -G wheel -m -d /stack \
     -o -s /bin/bash stack
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-RUN cat /etc/shadow
 
 RUN python3 -m venv /opt/crudini && /opt/crudini/bin/pip install crudini===0.9.3 && \
     ln -s /opt/crudini/bin/crudini /usr/bin/crudini
