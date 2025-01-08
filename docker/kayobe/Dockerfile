@@ -42,6 +42,7 @@ RUN groupadd -g $KAYOBE_USER_GID -o stack &&  \
     -G wheel -m -d /stack \
     -o -s /bin/bash stack
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN cat /etc/shadow
 
 RUN python3 -m venv /opt/crudini && /opt/crudini/bin/pip install crudini===0.9.3 && \
     ln -s /opt/crudini/bin/crudini /usr/bin/crudini
