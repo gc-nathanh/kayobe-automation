@@ -132,7 +132,7 @@ function generate_config {
 
     . $env_path/src/kayobe-config/kayobe-env
     . $env_path/venvs/kayobe/bin/activate
-    pip install python-dbus
+    pip install dbus-python
     export KAYOBE_VAULT_PASSWORD_OLD="$KAYOBE_VAULT_PASSWORD"
     export KAYOBE_VAULT_PASSWORD=dummy-password
     local KAYOBE_ANSIBLE_PATH="$env_path/venvs/kayobe/share/kayobe/ansible"
