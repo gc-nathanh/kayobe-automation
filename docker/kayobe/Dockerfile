@@ -24,7 +24,7 @@ ENV container docker
 
 RUN sed -i -e 's/$releasever/9.4/g' -e 's/$contentdir/vault\/rocky/g' -e 's/^#baseurl/baseurl/g' -e 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/rocky*.repo && \
     dnf update -y && \
-    dnf install -y dnf-plugins-core gcc git vim python3-pyyaml libffi-devel sudo which openssh-server diffstat diffutils python3-libselinux python3-dbus && \
+    dnf install -y dnf-plugins-core gcc git vim python3-pyyaml libffi-devel sudo which openssh-server diffstat diffutils python3-libselinux python3-dbus dbus-devel dbus-glib-devel python-devel && \
     dnf clean all
 
 RUN dnf config-manager --set-enabled crb && \
