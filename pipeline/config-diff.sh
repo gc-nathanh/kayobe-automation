@@ -31,7 +31,7 @@ function post_config_init {
         "etc/kayobe/kolla/passwords.yml"
         "etc/kayobe/secrets.yml"
         "etc/kayobe/environments/$KAYOBE_ENVIRONMENT/secrets.yml"
-        "etc/kayobe/environments/$KAYOBE_ENVIRONMENT/kolla/passwords.yml"
+        # "etc/kayobe/environments/$KAYOBE_ENVIRONMENT/kolla/passwords.yml"
         ${KAYOBE_CONFIG_SECRET_PATHS_EXTRA[@]}
     )
     KAYOBE_CONFIG_SECRET_PATHS=("${KAYOBE_CONFIG_SECRET_PATHS[@]:-${KAYOBE_CONFIG_SECRET_PATHS_DEFAULT[@]}}")
